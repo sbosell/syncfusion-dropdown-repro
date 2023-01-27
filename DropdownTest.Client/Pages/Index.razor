@@ -1,0 +1,27 @@
+@page "/"
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.DropDowns
+
+
+<SfDropDownList TValue="int" TItem="Todo" PopupHeight="230px" Placeholder="Select a type" @bind-Value="todo">
+    <SfDataManager Url="@Url"  Adaptor="Adaptors.UrlAdaptor"  CrossDomain=false></SfDataManager>
+    <DropDownListFieldSettings  Text="Text" Value="Id"   />
+</SfDropDownList>
+<div class="mt-10"></div>
+<SfDropDownList TValue="int" TItem="Todo" PopupHeight="230px" Placeholder="Select a type" @bind-Value="todo">
+    <SfDataManager Url="@Url" Adaptor="Adaptors.UrlAdaptor" CrossDomain=false></SfDataManager>
+    <DropDownListFieldSettings Text="text" Value="id" />
+</SfDropDownList>
+
+@code {
+    public string Url;
+    int todo;
+    protected override async Task OnInitializedAsync()
+    {
+
+        //await AppState.SetNavBreadTitle("jobs", "Jobs", new BreadCrumb() { Title = "Job", Url = "/jobs" });
+       
+        Url = new QueryTodosDropdown().ToReplyUrl();
+       
+    }
+}
